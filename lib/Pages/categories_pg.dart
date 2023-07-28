@@ -8,8 +8,13 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       appBar: AppBar(
-        title: const Text("Pick your Category"),
+        backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
+        title: Text(
+          "Pick your Category",
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
       ),
       body: GridView(
         padding: const EdgeInsets.all(24),
