@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/meal_model.dart';
+import 'package:food_app/widgets/meal_Item.dart';
 
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
@@ -15,11 +16,8 @@ class MealsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     //if the mealElement have some content then below code will be render
     Widget content = ListView.builder(
-      itemCount: meals.length,
-      itemBuilder: (ctx, index) => Text(
-        meals[index].title,
-      ),
-    );
+        itemCount: meals.length,
+        itemBuilder: (ctx, index) => MealItem(meal: meals[index]));
     //otherwise if the mealElement is empty then a text will be rendered at center
     if (meals.isEmpty) {
       content = Center(
