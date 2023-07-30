@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/Pages/meal_detail_pg.dart';
 import 'package:food_app/models/meal_model.dart';
 import 'package:food_app/widgets/meal_Item.dart';
 
@@ -12,12 +13,30 @@ class MealsScreen extends StatelessWidget {
   final String title;
   final List<Meal> meals;
 
+  //for selectingMeal
+  void selectMeal(BuildContext context, Meal meal) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) {
+          return MealsDetailPg(
+            meal: meal,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     //if the mealElement have some content then below code will be render
     Widget content = ListView.builder(
         itemCount: meals.length,
-        itemBuilder: (ctx, index) => MealItem(meal: meals[index]));
+        itemBuilder: (ctx, index) => MealItem(
+              meal: meals[index],
+              onSelectMeal: (meal) {
+                selectMeal(context, meal);
+              },
+            ));
     //otherwise if the mealElement is empty then a text will be rendered at center
     if (meals.isEmpty) {
       content = Center(
