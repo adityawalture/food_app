@@ -3,6 +3,7 @@ import 'package:food_app/Pages/categories_pg.dart';
 import 'package:food_app/Pages/meals_pg.dart';
 
 import '../models/meal_model.dart';
+import '../widgets/drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -64,6 +65,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activeScreenTitle),
       ),
+      drawer: const MainDrawer(),
       body: activeScreen,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
