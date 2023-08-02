@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum Filter { glutenFree, lactoseFree, vegan }
+
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
 
@@ -30,81 +32,93 @@ class _FiltersScreenState extends State<FiltersScreen> {
       //     }
       //   },
       // ),
-      body: Column(
-        children: [
-          SwitchListTile(
-            value: _glutenFree,
-            onChanged: (isChecked) {
-              setState(
-                () {
-                  _glutenFree = isChecked;
-                },
-              );
+      body: WillPopScope(
+        onWillPop: () async {
+          Navigator.of(context).pop(
+            {
+              Filter.glutenFree: _glutenFree,
+              Filter.lactoseFree: _lactoseFree,
+              Filter.vegan: _vegan,
             },
-            title: Text(
-              'Gluten-free',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
+          );
+          return false;
+        },
+        child: Column(
+          children: [
+            SwitchListTile(
+              value: _glutenFree,
+              onChanged: (isChecked) {
+                setState(
+                  () {
+                    _glutenFree = isChecked;
+                  },
+                );
+              },
+              title: Text(
+                'Gluten-free',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
+              subtitle: Text(
+                'Only include gluten-free meals',
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
+              activeColor: Theme.of(context).colorScheme.tertiary,
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
-            subtitle: Text(
-              'Only include gluten-free meals',
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
+            SwitchListTile(
+              value: _lactoseFree,
+              onChanged: (isChecked) {
+                setState(
+                  () {
+                    _lactoseFree = isChecked;
+                  },
+                );
+              },
+              title: Text(
+                'Lactose-free',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
+              subtitle: Text(
+                'Only include lactose-free meals',
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
+              activeColor: Theme.of(context).colorScheme.tertiary,
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
-            contentPadding: const EdgeInsets.only(left: 34, right: 22),
-          ),
-          SwitchListTile(
-            value: _lactoseFree,
-            onChanged: (isChecked) {
-              setState(
-                () {
-                  _lactoseFree = isChecked;
-                },
-              );
-            },
-            title: Text(
-              'Lactose-free',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            subtitle: Text(
-              'Only include lactose-free meals',
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
-            contentPadding: const EdgeInsets.only(left: 34, right: 22),
-          ),
-          SwitchListTile(
-            value: _vegan,
-            onChanged: (isChecked) {
-              setState(
-                () {
-                  _vegan = isChecked;
-                },
-              );
-            },
-            title: Text(
-              'Only Vegan',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            subtitle: Text(
-              'Only include vegan meals',
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
-            ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
-            contentPadding: const EdgeInsets.only(left: 34, right: 22),
-          )
-        ],
+            SwitchListTile(
+              value: _vegan,
+              onChanged: (isChecked) {
+                setState(
+                  () {
+                    _vegan = isChecked;
+                  },
+                );
+              },
+              title: Text(
+                'Only Vegan',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
+              subtitle: Text(
+                'Only include vegan meals',
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
+              activeColor: Theme.of(context).colorScheme.tertiary,
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
+            )
+          ],
+        ),
       ),
     );
   }
