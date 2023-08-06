@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:food_app/Pages/categories_pg.dart';
 import 'package:food_app/Pages/filter_pg.dart';
 import 'package:food_app/Pages/meals_pg.dart';
+import 'package:food_app/data/data.dart';
 
 import '../models/meal_model.dart';
 import '../widgets/drawer.dart';
+
+const kInitialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegan: false
+};
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -16,6 +23,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favouriteMeals = [];
+  Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   //snackBar after favorite button is clicked
   void _showSnackBar(String message) {
@@ -60,11 +68,28 @@ class _TabsScreenState extends State<TabsScreen> {
       );
 
       // print(result);
+      setState(() {
+        _selectedFilters = result ??
+            kInitialFilters; //double question mark ?? checks if the _selectedFilter is null, if the value is null then the value after ?? is apllied.
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where((meal) {
+      if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
+        return false;
+      }
+      if (_selectedFilters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+        return false;
+      }
+      if (_selectedFilters[Filter.vegan]! && !meal.isVegan) {
+        return false;
+      }
+      return true;
+    }).toList();
+
     Widget activeScreen = CategoriesScreen(
       onToggleFavorite: _toggleMealFavoriteStatus,
     );

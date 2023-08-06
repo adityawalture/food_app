@@ -115,7 +115,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     ),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: const EdgeInsets.only(left: 36, right: 22),
+              contentPadding: const EdgeInsets.only(left: 34, right: 22),
             )
           ],
         ),
