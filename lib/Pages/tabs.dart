@@ -27,16 +27,6 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   // final List<Meal> _favouriteMeals = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
-  //snackBar after favorite button is clicked
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
   // void _toggleMealFavoriteStatus(Meal meal) {
   //   final isExisting = _favouriteMeals.contains(meal);
 

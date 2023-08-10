@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
-    seedColor: const Color.fromARGB(255, 69, 160, 205),
+    seedColor: const Color.fromARGB(255, 94, 69, 205),
   ),
   textTheme: GoogleFonts.latoTextTheme(),
 );
