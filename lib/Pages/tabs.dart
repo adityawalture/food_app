@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:food_app/Pages/categories_pg.dart';
 import 'package:food_app/Pages/filter_pg.dart';
 import 'package:food_app/Pages/meals_pg.dart';
-import 'package:food_app/data/data.dart';
+// import 'package:food_app/data/data.dart';
 import 'package:food_app/provider/favourites_provider.dart';
 import 'package:food_app/provider/meals_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/meal_model.dart';
+// import '../models/meal_model.dart';
+import '../provider/filters_provider.dart';
 import '../widgets/drawer.dart';
 
 const kInitialFilters = {
