@@ -1,3 +1,4 @@
 {
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "cmake.sourceDirectory": "E:/acedamics/flutter/Projects/Udemy/food_app/windows/flutter"
 }
