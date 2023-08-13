@@ -15,6 +15,9 @@ class MealsDetailPg extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+    final isFavorite = favoriteMeals.contains(meal);
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -32,7 +35,10 @@ class MealsDetailPg extends ConsumerWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.favorite),
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: const Color.fromARGB(255, 221, 80, 151),
+            ),
           ),
         ],
         title: Text(meal.title),
