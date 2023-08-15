@@ -35,9 +35,20 @@ class MealsDetailPg extends ConsumerWidget {
                 ),
               );
             },
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: const Color.fromARGB(255, 221, 80, 151),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  // turns: animation,
+                  turns: Tween(begin: 0.4, end: 1.0).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: const Color.fromARGB(255, 221, 80, 151),
+                key: ValueKey(isFavorite),
+              ),
             ),
           ),
         ],
@@ -46,10 +57,13 @@ class MealsDetailPg extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              meal.imageUrl,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            Hero(
+              tag: meal.id,
+              child: Image.network(
+                meal.imageUrl,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(height: 14),
             Text(
