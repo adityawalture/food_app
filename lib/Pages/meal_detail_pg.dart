@@ -65,7 +65,7 @@ class MealsDetailPg extends ConsumerWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: 15),
             Text(
               'Ingredients',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
